@@ -31,4 +31,10 @@ public class GraphController {
 
     }
 
+    @GetMapping("/export")
+    public String export() {
+        return remoteClientService.exportGraph();
+
+    }
+
 }
