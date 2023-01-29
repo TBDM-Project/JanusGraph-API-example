@@ -15,20 +15,37 @@ import java.io.IOException;
 @Service
 public class RemoteClientService {
 
-    private GraphTraversalSource g = traversal().withRemote(DriverRemoteConnection.using("localhost", 8182, "g"));
+    private GraphTraversalSource g;
+
+    public String init() {
+        try {
+            this.g = traversal().withRemote("conf/remote-graph.properties");
+            /*
+             * this.g = traversal().withRemote(DriverRemoteConnection.using("localhost",
+             * 8182, "g"));
+             */
+            return "Connection successfull";
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return e.getMessage();
+        }
+    }
 
     public Object getVertices() {
         try {
-            // this.g = traversal().withRemote(DriverRemoteConnection.using("localhost",
-            // 8182, "g"));
-            // g.addV("human").property("name", "stephen").property("age", 33);
-            // g.addV("person").property("name", "stephen");
-            // return this.g.V().has("name", "bob").values("age").next();
-            return this.g.V().has("name", "josh").next();
+            /*
+             * this.g = traversal().withRemote(DriverRemoteConnection.using("localhost",
+             * 8182, "g"));
+             * g.addV("human").property("name", "stephen").property("age", 33);
+             * g.addV("person").property("name", "stephen");
+             * return this.g.V().has("name", "bob").values("age").next();
+             * return this.g.V();
+             */
+            return this.g.V().has("type", "airport").count();
         } catch (Exception e) {
-            e.getMessage();
+            // System.out.println(e.getCause());
+            return e.getMessage();
         }
-        return null;
 
     }
 

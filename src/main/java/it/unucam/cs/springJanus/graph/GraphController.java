@@ -20,6 +20,11 @@ public class GraphController {
         this.remoteClientService = remoteClientService;
     }
 
+    @GetMapping("/connect")
+    public String connect() {
+        return this.remoteClientService.init();
+    }
+
     @GetMapping("/vertices")
     public Object getVertices() {
         return remoteClientService.getVertices();
