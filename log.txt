@@ -1,0 +1,1 @@
+[GraphStep(vertex,[]), HasStep([type.eq(airport)]), CountGlobalStep]

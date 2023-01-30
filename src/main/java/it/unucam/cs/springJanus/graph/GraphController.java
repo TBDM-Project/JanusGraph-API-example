@@ -18,6 +18,8 @@ public class GraphController {
     @Autowired
     public GraphController(RemoteClientService remoteClientService) {
         this.remoteClientService = remoteClientService;
+        this.remoteClientService.init();
+        System.out.println("Connection successfull");
     }
 
     @GetMapping("/connect")
@@ -26,7 +28,7 @@ public class GraphController {
     }
 
     @GetMapping("/vertices")
-    public Object getVertices() {
+    public GraphTraversal<Vertex, Map<Object, Object>> getVertices() {
         return remoteClientService.getVertices();
     }
 
@@ -37,8 +39,8 @@ public class GraphController {
     }
 
     @GetMapping("/export")
-    public String export() {
-        return remoteClientService.exportGraph();
+    public void export() {
+        remoteClientService.exportGraph();
 
     }
 
