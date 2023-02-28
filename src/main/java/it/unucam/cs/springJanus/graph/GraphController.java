@@ -1,8 +1,10 @@
 package it.unucam.cs.springJanus.graph;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
+import org.apache.tinkerpop.gremlin.structure.Edge;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,14 +30,23 @@ public class GraphController {
     }
 
     @GetMapping("/vertices")
-    public GraphTraversal<Vertex, Map<Object, Object>> getVertices() {
-        return remoteClientService.getVertices();
+    public List<Map<Object, Object>> getAllVertices() {
+        return remoteClientService.getAllVertices();
     }
 
-    @GetMapping("/add")
-    public void addVertex() {
-        remoteClientService.addVertex();
+    @GetMapping("/edges")
+    public List<Map<Object, Object>> getAllEdges() {
+        return remoteClientService.getAllEdges();
+    }
 
+    @GetMapping("/countV")
+    public List<Long> countVertices() {
+        return remoteClientService.countVertices();
+    }
+
+    @GetMapping("/countE")
+    public List<Long> countEdges() {
+        return remoteClientService.countEdges();
     }
 
     @GetMapping("/export")
