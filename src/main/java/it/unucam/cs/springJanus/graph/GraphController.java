@@ -3,11 +3,13 @@ package it.unucam.cs.springJanus.graph;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
-import org.apache.tinkerpop.gremlin.structure.Edge;
-import org.apache.tinkerpop.gremlin.structure.Vertex;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,6 +49,39 @@ public class GraphController {
     @GetMapping("/countE")
     public List<Long> countEdges() {
         return remoteClientService.countEdges();
+    }
+
+    @GetMapping("/getDirector")
+    public List<Map<Object, Object>> getDepartementDirector() {
+        return remoteClientService.getDirector();
+    }
+
+    @PostMapping("/filter")
+    ResponseEntity<List<Map<Object, Object>>> filter(@Valid @RequestBody Map<String, String> params) {
+        return ResponseEntity.ok(remoteClientService.filter(params));
+    }
+
+    @PostMapping("/filter_group")
+    ResponseEntity<List<Map<Object, Object>>> filterGroup(@Valid @RequestBody Map<String, String> params) {
+        String groupField = params.get("groupField");
+        params.remove("groupField");
+        System.out.println(params.toString());
+        System.out.println(groupField);
+        return ResponseEntity.ok(remoteClientService.filterGroup(params, groupField));
+    }
+
+    @PostMapping("/find_children")
+    ResponseEntity<List<Map<Object, Object>>> findChildrenByName(@Valid @RequestBody Map<String, String> params) {
+        String vertexName = params.get("vertexName");
+        params.remove("vertexName");
+        return ResponseEntity.ok(remoteClientService.findChildrenByName(params, vertexName));
+    }
+
+    @PostMapping("/find_entering")
+    ResponseEntity<List<Map<Object, Object>>> findEnteringVertices(@Valid @RequestBody Map<String, String> params) {
+        String vertexName = params.get("vertexName");
+        params.remove("vertexName");
+        return ResponseEntity.ok(remoteClientService.findEnteringVertices(params, vertexName));
     }
 
     @GetMapping("/export")

@@ -1,14 +1,13 @@
 package it.unucam.cs.springJanus.graph;
 
-import org.apache.tinkerpop.gremlin.driver.remote.DriverRemoteConnection;
-import org.apache.tinkerpop.gremlin.process.traversal.IO;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource;
-import org.apache.tinkerpop.gremlin.structure.Edge;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.springframework.stereotype.Service;
 import static org.apache.tinkerpop.gremlin.process.traversal.AnonymousTraversalSource.traversal;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -67,6 +66,89 @@ public class RemoteClientService {
             System.out.println(e.getCause().getMessage());
         }
         return null;
+    }
+
+    public List<Map<Object, Object>> filter(Map<String, String> params) {
+
+        Iterator<Map.Entry<String, String>> iterator = params.entrySet().iterator();
+        GraphTraversal<Vertex, Vertex> query = this.g.V();
+        while (iterator.hasNext()) {
+            Map.Entry<String, String> entry = iterator.next();
+            System.out.println(entry.getKey() + ":" + entry.getValue());
+            query = query.has(entry.getKey(), entry.getValue());
+        }
+        List<Map<Object, Object>> res = query.valueMap().toList();
+        return res;
+
+        /*
+         * GraphTraversal<Vertex, Vertex> query = this.g.V().has("type", "class_room");
+         * return query.valueMap().toList();
+         * 
+         * this.g.V().has("type", "class_room").valueMap().toList();
+         * this.g.V().has("category", "space").has("type",
+         * "department").valueMap().toList();
+         * this.g.V().has("category", "sensor").valueMap(true, "name").toList();
+         */
+    }
+
+    public List<Map<Object, Object>> filterGroup(Map<String, String> params, String groupField) {
+
+        Iterator<Map.Entry<String, String>> iterator = params.entrySet().iterator();
+        GraphTraversal<Vertex, Vertex> query = this.g.V();
+        while (iterator.hasNext()) {
+            Map.Entry<String, String> entry = iterator.next();
+            System.out.println(entry.getKey() + ":" + entry.getValue());
+            query = query.has(entry.getKey(), entry.getValue());
+        }
+        try {
+            List<Map<Object, Object>> res = query.group().by(groupField).toList();
+            return res;
+        } catch (Exception e) {
+            System.out.println(e.getCause().getMessage());
+        }
+        return null;
+
+    }
+
+    public List<Map<Object, Object>> findChildrenByName(Map<String, String> params, String vertexName) {
+
+        Iterator<Map.Entry<String, String>> iterator = params.entrySet().iterator();
+        GraphTraversal<Vertex, Vertex> query = this.g.V().hasLabel(vertexName).out();
+        while (iterator.hasNext()) {
+            Map.Entry<String, String> entry = iterator.next();
+            System.out.println(entry.getKey() + ":" + entry.getValue());
+            query = query.has(entry.getKey(), entry.getValue());
+        }
+        List<Map<Object, Object>> res = query.valueMap().toList();
+        return res;
+
+    }
+
+    public List<Map<Object, Object>> findEnteringVertices(Map<String, String> params, String vertexName) {
+
+        Iterator<Map.Entry<String, String>> iterator = params.entrySet().iterator();
+        GraphTraversal<Vertex, Vertex> query = this.g.V().hasLabel(vertexName).in();
+        while (iterator.hasNext()) {
+            Map.Entry<String, String> entry = iterator.next();
+            System.out.println(entry.getKey() + ":" + entry.getValue());
+            query = query.has(entry.getKey(), entry.getValue());
+        }
+        List<Map<Object, Object>> res = query.valueMap().toList();
+        return res;
+
+    }
+
+    public List<Map<Object, Object>> getDirector() {
+
+        /*
+         * List<Map<Object, Object>> res = this.g.V().has("type", "city").has("name",
+         * "Camerino")
+         * .repeat(out().simplePath()).until(has("type",
+         * "department_director")).valueMap()
+         * .toList();
+         * return res;
+         */
+
     }
 
     public void exportGraph() {
