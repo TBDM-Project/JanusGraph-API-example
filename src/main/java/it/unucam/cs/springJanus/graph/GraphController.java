@@ -1,17 +1,26 @@
 package it.unucam.cs.springJanus.graph;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 
 @RestController
 @RequestMapping("/api/v1/graph")
@@ -51,36 +60,38 @@ public class GraphController {
         return remoteClientService.countEdges();
     }
 
-    @GetMapping("/getDirector")
-    public List<Map<Object, Object>> getDepartementDirector() {
-        return remoteClientService.getDirector();
-    }
+    /*
+     * @GetMapping("/getDirector")
+     * public List<Map<Object, Object>> getDepartementDirector() {
+     * return remoteClientService.getDirector();
+     * }
+     */
 
     @PostMapping("/filter")
-    ResponseEntity<List<Map<Object, Object>>> filter(@Valid @RequestBody Map<String, String> params) {
+    ResponseEntity<List<Map<Object, Object>>> filter(@Valid @RequestBody Map<Attributes, String> params) {
         return ResponseEntity.ok(remoteClientService.filter(params));
     }
 
     @PostMapping("/filter_group")
-    ResponseEntity<List<Map<Object, Object>>> filterGroup(@Valid @RequestBody Map<String, String> params) {
-        String groupField = params.get("groupField");
-        params.remove("groupField");
+    ResponseEntity<Map<Object, Object>> filterGroup(@Valid @RequestBody Map<Attributes, String> params) {
+        String groupField = params.get(Attributes.groupField);
+        params.remove(Attributes.groupField);
         System.out.println(params.toString());
         System.out.println(groupField);
         return ResponseEntity.ok(remoteClientService.filterGroup(params, groupField));
     }
 
     @PostMapping("/find_children")
-    ResponseEntity<List<Map<Object, Object>>> findChildrenByName(@Valid @RequestBody Map<String, String> params) {
-        String vertexName = params.get("vertexName");
-        params.remove("vertexName");
+    ResponseEntity<List<Map<Object, Object>>> findChildrenByName(@Valid @RequestBody Map<Attributes, String> params) {
+        String vertexName = params.get(Attributes.vertexName);
+        params.remove(Attributes.vertexName);
         return ResponseEntity.ok(remoteClientService.findChildrenByName(params, vertexName));
     }
 
     @PostMapping("/find_entering")
-    ResponseEntity<List<Map<Object, Object>>> findEnteringVertices(@Valid @RequestBody Map<String, String> params) {
-        String vertexName = params.get("vertexName");
-        params.remove("vertexName");
+    ResponseEntity<List<Map<Object, Object>>> findEnteringVertices(@Valid @RequestBody Map<Attributes, String> params) {
+        String vertexName = params.get(Attributes.vertexName);
+        params.remove(Attributes.vertexName);
         return ResponseEntity.ok(remoteClientService.findEnteringVertices(params, vertexName));
     }
 
@@ -88,6 +99,12 @@ public class GraphController {
     public void export() {
         remoteClientService.exportGraph();
 
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(InvalidFormatException.class)
+    public ResponseEntity<String> handleValidationExceptions2() {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error");
     }
 
 }

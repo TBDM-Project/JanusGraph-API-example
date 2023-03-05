@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Service
 public class RemoteClientService {
@@ -68,14 +69,14 @@ public class RemoteClientService {
         return null;
     }
 
-    public List<Map<Object, Object>> filter(Map<String, String> params) {
+    public List<Map<Object, Object>> filter(Map<Attributes, String> params) {
 
-        Iterator<Map.Entry<String, String>> iterator = params.entrySet().iterator();
+        Iterator<Map.Entry<Attributes, String>> iterator = params.entrySet().iterator();
         GraphTraversal<Vertex, Vertex> query = this.g.V();
         while (iterator.hasNext()) {
-            Map.Entry<String, String> entry = iterator.next();
+            Map.Entry<Attributes, String> entry = iterator.next();
             System.out.println(entry.getKey() + ":" + entry.getValue());
-            query = query.has(entry.getKey(), entry.getValue());
+            query = query.has(entry.getKey().toString(), entry.getValue());
         }
         List<Map<Object, Object>> res = query.valueMap().toList();
         return res;
@@ -91,65 +92,66 @@ public class RemoteClientService {
          */
     }
 
-    public List<Map<Object, Object>> filterGroup(Map<String, String> params, String groupField) {
+    public Map<Object, Object> filterGroup(Map<Attributes, String> params, String groupField) {
 
-        Iterator<Map.Entry<String, String>> iterator = params.entrySet().iterator();
+        Iterator<Map.Entry<Attributes, String>> iterator = params.entrySet().iterator();
         GraphTraversal<Vertex, Vertex> query = this.g.V();
         while (iterator.hasNext()) {
-            Map.Entry<String, String> entry = iterator.next();
+            Map.Entry<Attributes, String> entry = iterator.next();
             System.out.println(entry.getKey() + ":" + entry.getValue());
-            query = query.has(entry.getKey(), entry.getValue());
+            query = query.has(entry.getKey().toString(), entry.getValue());
         }
         try {
-            List<Map<Object, Object>> res = query.group().by(groupField).toList();
+            Map<Object, Object> res = query.group().by(groupField).next();
             return res;
         } catch (Exception e) {
-            System.out.println(e.getCause().getMessage());
+            System.out.println(e.getMessage());
         }
         return null;
 
     }
 
-    public List<Map<Object, Object>> findChildrenByName(Map<String, String> params, String vertexName) {
+    public List<Map<Object, Object>> findChildrenByName(Map<Attributes, String> params, String vertexName) {
 
-        Iterator<Map.Entry<String, String>> iterator = params.entrySet().iterator();
+        Iterator<Map.Entry<Attributes, String>> iterator = params.entrySet().iterator();
         GraphTraversal<Vertex, Vertex> query = this.g.V().hasLabel(vertexName).out();
         while (iterator.hasNext()) {
-            Map.Entry<String, String> entry = iterator.next();
+            Map.Entry<Attributes, String> entry = iterator.next();
             System.out.println(entry.getKey() + ":" + entry.getValue());
-            query = query.has(entry.getKey(), entry.getValue());
+            query = query.has(entry.getKey().toString(), entry.getValue());
         }
         List<Map<Object, Object>> res = query.valueMap().toList();
         return res;
 
     }
 
-    public List<Map<Object, Object>> findEnteringVertices(Map<String, String> params, String vertexName) {
+    public List<Map<Object, Object>> findEnteringVertices(Map<Attributes, String> params, String vertexName) {
 
-        Iterator<Map.Entry<String, String>> iterator = params.entrySet().iterator();
+        Iterator<Map.Entry<Attributes, String>> iterator = params.entrySet().iterator();
         GraphTraversal<Vertex, Vertex> query = this.g.V().hasLabel(vertexName).in();
         while (iterator.hasNext()) {
-            Map.Entry<String, String> entry = iterator.next();
+            Map.Entry<Attributes, String> entry = iterator.next();
             System.out.println(entry.getKey() + ":" + entry.getValue());
-            query = query.has(entry.getKey(), entry.getValue());
+            query = query.has(entry.getKey().toString(), entry.getValue());
         }
         List<Map<Object, Object>> res = query.valueMap().toList();
         return res;
 
     }
 
-    public List<Map<Object, Object>> getDirector() {
-
-        /*
-         * List<Map<Object, Object>> res = this.g.V().has("type", "city").has("name",
-         * "Camerino")
-         * .repeat(out().simplePath()).until(has("type",
-         * "department_director")).valueMap()
-         * .toList();
-         * return res;
-         */
-
-    }
+    /*
+     * public List<Map<Object, Object>> getDirector() {
+     * 
+     * List<Map<Object, Object>> res = this.g.V().has("type", "city").has("name",
+     * "Camerino")
+     * .repeat(out().simplePath()).until(has("type",
+     * "department_director"))
+     * .valueMap()
+     * .toList();
+     * return res;
+     * 
+     * }
+     */
 
     public void exportGraph() {
         /*
