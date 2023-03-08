@@ -60,12 +60,10 @@ public class GraphController {
         return remoteClientService.countEdges();
     }
 
-    /*
-     * @GetMapping("/getDirector")
-     * public List<Map<Object, Object>> getDepartementDirector() {
-     * return remoteClientService.getDirector();
-     * }
-     */
+    @GetMapping("/getDirector")
+    public List<Map<Object, Object>> getDepartementDirector() {
+        return remoteClientService.getDirector();
+    }
 
     @PostMapping("/filter")
     ResponseEntity<List<Map<Object, Object>>> filter(@Valid @RequestBody Map<Attributes, String> params) {
@@ -73,7 +71,7 @@ public class GraphController {
     }
 
     @PostMapping("/filter_group")
-    ResponseEntity<Map<Object, Object>> filterGroup(@Valid @RequestBody Map<Attributes, String> params) {
+    ResponseEntity<List<Map<Object, Object>>> filterGroup(@Valid @RequestBody Map<Attributes, String> params) {
         String groupField = params.get(Attributes.groupField);
         params.remove(Attributes.groupField);
         System.out.println(params.toString());

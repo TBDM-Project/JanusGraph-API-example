@@ -2,6 +2,7 @@ package it.unucam.cs.springJanus.graph;
 
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource;
+import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.springframework.stereotype.Service;
 import static org.apache.tinkerpop.gremlin.process.traversal.AnonymousTraversalSource.traversal;
@@ -11,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 
 @Service
 public class RemoteClientService {
@@ -92,7 +94,7 @@ public class RemoteClientService {
          */
     }
 
-    public Map<Object, Object> filterGroup(Map<Attributes, String> params, String groupField) {
+    public List<Map<Object, Object>> filterGroup(Map<Attributes, String> params, String groupField) {
 
         Iterator<Map.Entry<Attributes, String>> iterator = params.entrySet().iterator();
         GraphTraversal<Vertex, Vertex> query = this.g.V();
@@ -102,7 +104,8 @@ public class RemoteClientService {
             query = query.has(entry.getKey().toString(), entry.getValue());
         }
         try {
-            Map<Object, Object> res = query.group().by(groupField).next();
+            List<Map<Object, Object>> res = query.valueMap().group().by(groupField).toList();
+            // System.out.println(query.valueMap().group().by(groupField).toList());
             return res;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -139,19 +142,17 @@ public class RemoteClientService {
 
     }
 
-    /*
-     * public List<Map<Object, Object>> getDirector() {
-     * 
-     * List<Map<Object, Object>> res = this.g.V().has("type", "city").has("name",
-     * "Camerino")
-     * .repeat(out().simplePath()).until(has("type",
-     * "department_director"))
-     * .valueMap()
-     * .toList();
-     * return res;
-     * 
-     * }
-     */
+    public List<Map<Object, Object>> getDirector() {
+
+        List<Map<Object, Object>> res = this.g.V().has("type", "city").has("name",
+                "Camerino")
+                .repeat(__.out().simplePath()).until(__.has("type",
+                        "department_director"))
+                .valueMap()
+                .toList();
+        return res;
+
+    }
 
     public void exportGraph() {
         /*
