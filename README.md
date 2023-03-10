@@ -94,9 +94,9 @@ This section should list any major frameworks that you built your project using.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Import the Postman collection present in the project and run requests.
+Import the Postman-collection present in the project in your Postman testing tool and run requests.
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![My Image](postman.jpg)
 
 <!-- CONTACT -->
 ## Contact
