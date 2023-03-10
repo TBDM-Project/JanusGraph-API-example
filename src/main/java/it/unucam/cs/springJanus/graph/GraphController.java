@@ -60,6 +60,84 @@ public class GraphController {
         return remoteClientService.countEdges();
     }
 
+    @GetMapping("/vertices/{id}")
+    public Object getVertexById(@PathVariable("id") Object id) {
+        return remoteClientService.getVertexById(id);
+    }
+
+    @GetMapping("/vertices/label")
+    public Object getVerticesByLabel(@RequestParam("label") String label) {
+        return remoteClientService.getVerticesByLabel(label);
+    }
+
+    @GetMapping("/vertices/properties")
+    public Object getVerticesByProperties(
+            @RequestParam("properties") List<String> properties,
+            @RequestParam("values") List<Object> values
+    ) throws Exception {
+        if (properties.size() != values.size())
+            throw new Exception("Mismatch between properties and values amount");
+        Iterator<String> p = properties.iterator();
+        Iterator<Object> v = values.iterator();
+        Map<String, Object> propertyValueMap = IntStream.range(0, properties.size()).boxed()
+                .collect(Collectors.toMap(_i -> p.next(), _i -> v.next()));
+        return remoteClientService.getVerticesByProperties(propertyValueMap);
+    }
+
+    @PostMapping("/vertices")
+    public Object addVertex(@RequestParam("label") String label) {
+        return remoteClientService.addVertex(label);
+    }
+
+    @DeleteMapping("/vertices/{id}")
+    public void removeVertex(@PathVariable("id") Object id) {
+        remoteClientService.removeVertex(id);
+    }
+
+    @PostMapping("/vertices/{id}")
+    public void addPropertyV(@PathVariable("id") Object id, @RequestParam("key") String key, @RequestParam("value") Object value) {
+        remoteClientService.addPropertyV(id, key, value);
+    }
+
+    @GetMapping("/edges/{id}")
+    public Object getEdgeById(@PathVariable("id") Object id) {
+        return remoteClientService.getEdgeById(id);
+    }
+
+    @GetMapping("/edges/label")
+    public Object getEdgesByLabel(@RequestParam("label") String label) {
+        return remoteClientService.getEdgesByLabel(label);
+    }
+
+    @GetMapping("/edges/properties")
+    public Object getEdgesByProperties(
+            @RequestParam("properties") List<String> properties,
+            @RequestParam("values") List<Object> values
+    ) throws Exception {
+        if (properties.size() != values.size())
+            throw new Exception("Mismatch between properties and values amount");
+        Iterator<String> p = properties.iterator();
+        Iterator<Object> v = values.iterator();
+        Map<String, Object> propertyValueMap = IntStream.range(0, properties.size()).boxed()
+                .collect(Collectors.toMap(_i -> p.next(), _i -> v.next()));
+        return remoteClientService.getEdgesByProperties(propertyValueMap);
+    }
+
+    @PostMapping("/edges")
+    public Object addEdge(@RequestParam("label") String label, Object from, Object to) {
+        return remoteClientService.addEdge(label, from, to);
+    }
+
+    @DeleteMapping("/edges/{id}")
+    public void removeEdge(@PathVariable("id") Object id) {
+        remoteClientService.removeEdge(id);
+    }
+
+    @PostMapping("/edges/{id}")
+    public void addPropertyE(@PathVariable("id") Object id, @RequestParam("key") String key, @RequestParam("value") Object value) {
+        remoteClientService.addPropertyE(id, key, value);
+    }
+
     @GetMapping("/getDirector")
     public List<Map<Object, Object>> getDepartementDirector() {
         return remoteClientService.getDirector();
