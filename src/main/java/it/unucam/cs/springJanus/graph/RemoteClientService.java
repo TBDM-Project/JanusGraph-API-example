@@ -31,6 +31,92 @@ public class RemoteClientService {
         }
     }
 
+    public Map<Object, Object> getVertexById(Object id) {
+        try {
+            return this.g.V(id).elementMap().next();
+        } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    public List<Map<Object, Object>> getVerticesByLabel(String label) {
+        return this.g.V().hasLabel(label).elementMap().toList();
+    }
+
+    public Object getVerticesByProperties(Map<String, Object> propertyValueMap) {
+        GraphTraversal<Vertex, Vertex> traversal = this.g.V();
+        for (Map.Entry<String, Object> entry : propertyValueMap.entrySet()) {
+            traversal = traversal.has(entry.getKey(), entry.getValue());
+        }
+        return traversal.elementMap().toList();
+    }
+
+    public Object addVertex(String label) {
+        Vertex v = this.g.addV(label).next();
+        return v.id();
+    }
+
+    public void removeVertex(Object id) {
+        try{
+            this.g.V(id).drop().next();
+        } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void addPropertyV(Object id, String key, Object value) {
+        try {
+            this.g.V(id).next().property(key, value);
+        } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public Map<Object, Object> getEdgeById(Object id) {
+        try {
+            return this.g.E(id).elementMap().next();
+        } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
+        }
+            return null;
+    }
+
+    public List<Map<Object, Object>> getEdgesByLabel(String label) {
+        return this.g.E().hasLabel(label).elementMap().toList();
+    }
+
+    public Object addEdge(String label, Object from, Object to) {
+        Vertex v1 = this.g.V(from).next();
+        Vertex v2 = this.g.V(to).next();
+        Edge e = this.g.addE(label).from(v1).to(v2).next();
+        return e.id();
+    }
+
+    public void removeEdge(Object id) {
+        try{
+            this.g.E(id).drop().next();
+        } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void addPropertyE(Object id, String key, Object value) {
+        try {
+            this.g.E(id).next().property(key, value);
+        } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public Object getEdgesByProperties(Map<String, Object> propertyValueMap) {
+        GraphTraversal<Edge, Edge> traversal = this.g.E();
+        for (Map.Entry<String, Object> entry : propertyValueMap.entrySet()) {
+            traversal = traversal.has(entry.getKey(), entry.getValue());
+        }
+        return traversal.elementMap().toList();
+    }
+
     public List<Map<Object, Object>> getAllVertices() {
         try {
             return this.g.V().valueMap().toList();
