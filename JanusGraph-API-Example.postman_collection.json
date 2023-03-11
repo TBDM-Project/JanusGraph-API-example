@@ -1,0 +1,627 @@
+{
+	"info": {
+		"_postman_id": "e173a7b5-a947-4999-ad85-d11b142caac9",
+		"name": "JanusGraph-API-Example",
+		"description": "This is a sample REST API collection to test our instance of JanusGraph, used to implement the project for Technologies for Big Data Mangement exam in the Computer Science degree of University of Camerino.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18321591"
+	},
+	"item": [
+		{
+			"name": "Vertices",
+			"item": [
+				{
+					"name": "Count all the vertices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/countV",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"countV"
+							]
+						},
+						"description": "_**This request returns the count of all the vertices in the graph.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all vertices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/vertices",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"vertices"
+							]
+						},
+						"description": "_**This request returns all the vertices in the graph.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all vertices by label",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/graph/vertices/label?label=Temperature Room",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"graph",
+								"vertices",
+								"label"
+							],
+							"query": [
+								{
+									"key": "label",
+									"value": "Temperature Room"
+								}
+							]
+						},
+						"description": "_**This request returns nodes having the specified label.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Get vertex by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/graph/vertices/12480",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"graph",
+								"vertices",
+								"12480"
+							]
+						},
+						"description": "_**This request returns the node with the specified ID.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Find vertices by properties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/graph/vertices/properties?properties=category,type&values=sensor,environmental",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"graph",
+								"vertices",
+								"properties"
+							],
+							"query": [
+								{
+									"key": "properties",
+									"value": "category,type"
+								},
+								{
+									"key": "values",
+									"value": "sensor,environmental"
+								}
+							]
+						},
+						"description": "_**This request returns nodes having the specified properties.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Add vertex",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/graph/vertices?label=label",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"graph",
+								"vertices"
+							],
+							"query": [
+								{
+									"key": "label",
+									"value": "label"
+								}
+							]
+						},
+						"description": "_**This request adds a node to the graph.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Remove vertex",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/graph/vertices/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"graph",
+								"vertices",
+								"6"
+							]
+						},
+						"description": "_**This request removes a node with a specific ID from the graph.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Add property v",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/graph/vertices/5?key=key&value=value",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"graph",
+								"vertices",
+								"5"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "key",
+									"value": "key"
+								},
+								{
+									"key": "value",
+									"value": "value"
+								}
+							]
+						},
+						"description": "_**This request adds a property to the with the specified ID.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Find entering vertices",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\" : \"sensor\",\r\n    \"vertexName\" : \"LB1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/find_entering",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"find_entering"
+							]
+						},
+						"description": "_**This request returns all the entering vertices in an given vertex and filtered by the attributes passed.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Find child vertices",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\":\"space\",\r\n    \"vertexName\":\"Polo B Ludovici\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/find_children",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"find_children"
+							]
+						},
+						"description": "_**This request returns all the child vertices given an initial vertex and filtered by the attributes passed.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Filter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\" :\"space\",\r\n    \"type\" : \"department\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/filter",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"filter"
+							]
+						},
+						"description": "_**This request returns the vertices in the graph filtered by the attributes passed.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Filter and Group",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\" :\"sensor\",\r\n    \"groupField\" : \"type\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/filter_group",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"filter_group"
+							]
+						},
+						"description": "_**This request returns all the vertices in the graph filtered and grouped by the attributes passed.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Get director",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/getDirector",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"getDirector"
+							]
+						},
+						"description": "_**This request returns the departement's director.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Load data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/load",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"load"
+							]
+						},
+						"description": "_**This request loads the graph data in the database.**_"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Edges",
+			"item": [
+				{
+					"name": "Count all the edges",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/countE",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"countE"
+							]
+						},
+						"description": "_**This request returns the count of all the edges in the graph.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all edges",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/edges",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"edges"
+							]
+						},
+						"description": "_**This request returns all the edges in the graph.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all edges by label",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/graph/edges?label=label",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"graph",
+								"edges"
+							],
+							"query": [
+								{
+									"key": "label",
+									"value": "label"
+								}
+							]
+						},
+						"description": "_**This request returns all the edges with the specified label.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Get edge by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/graph/edges/231",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"graph",
+								"edges",
+								"231"
+							]
+						},
+						"description": "_**This request returns the edge with the specified ID.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Find edges by properties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/graph/edges/properties?properties=category,type&values=sensor,environmental",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"graph",
+								"edges",
+								"properties"
+							],
+							"query": [
+								{
+									"key": "properties",
+									"value": "category,type"
+								},
+								{
+									"key": "values",
+									"value": "sensor,environmental"
+								}
+							]
+						},
+						"description": "_**This request returns edges having the specified properties.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Add edge",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/graph/edges?label=label",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"graph",
+								"edges"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "8272",
+									"disabled": true
+								},
+								{
+									"key": "to",
+									"value": "8320",
+									"disabled": true
+								},
+								{
+									"key": "label",
+									"value": "label"
+								}
+							]
+						},
+						"description": "_**This request adds an edge to the graph.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "Remove edge",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/graph/edges/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"graph",
+								"edges",
+								"id"
+							]
+						},
+						"description": "StartFragment\n\n_**This request removes an edge from the graph.**_\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Add property e",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/graph/edges/id?key=key&value=value",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"graph",
+								"edges",
+								"id"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "key"
+								},
+								{
+									"key": "value",
+									"value": "value"
+								}
+							]
+						},
+						"description": "StartFragment\n\n_**This request adds a property to the edge with the specified ID.**_\n\nEndFragment"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "localhost:8080/api/v1/graph"
+		}
+	]
+}

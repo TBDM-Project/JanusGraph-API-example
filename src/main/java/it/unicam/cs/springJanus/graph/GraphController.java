@@ -1,9 +1,12 @@
-package it.unucam.cs.springJanus.graph;
+package it.unicam.cs.springJanus.graph;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +15,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -73,8 +79,7 @@ public class GraphController {
     @GetMapping("/vertices/properties")
     public Object getVerticesByProperties(
             @RequestParam("properties") List<String> properties,
-            @RequestParam("values") List<Object> values
-    ) throws Exception {
+            @RequestParam("values") List<Object> values) throws Exception {
         if (properties.size() != values.size())
             throw new Exception("Mismatch between properties and values amount");
         Iterator<String> p = properties.iterator();
@@ -95,7 +100,8 @@ public class GraphController {
     }
 
     @PostMapping("/vertices/{id}")
-    public void addPropertyV(@PathVariable("id") Object id, @RequestParam("key") String key, @RequestParam("value") Object value) {
+    public void addPropertyV(@PathVariable("id") Object id, @RequestParam("key") String key,
+            @RequestParam("value") Object value) {
         remoteClientService.addPropertyV(id, key, value);
     }
 
@@ -112,8 +118,7 @@ public class GraphController {
     @GetMapping("/edges/properties")
     public Object getEdgesByProperties(
             @RequestParam("properties") List<String> properties,
-            @RequestParam("values") List<Object> values
-    ) throws Exception {
+            @RequestParam("values") List<Object> values) throws Exception {
         if (properties.size() != values.size())
             throw new Exception("Mismatch between properties and values amount");
         Iterator<String> p = properties.iterator();
@@ -134,7 +139,8 @@ public class GraphController {
     }
 
     @PostMapping("/edges/{id}")
-    public void addPropertyE(@PathVariable("id") Object id, @RequestParam("key") String key, @RequestParam("value") Object value) {
+    public void addPropertyE(@PathVariable("id") Object id, @RequestParam("key") String key,
+            @RequestParam("value") Object value) {
         remoteClientService.addPropertyE(id, key, value);
     }
 
@@ -152,6 +158,7 @@ public class GraphController {
     ResponseEntity<List<Map<Object, Object>>> filterGroup(@Valid @RequestBody Map<Attributes, String> params) {
         String groupField = params.get(Attributes.groupField);
         params.remove(Attributes.groupField);
+
         System.out.println(params.toString());
         System.out.println(groupField);
         return ResponseEntity.ok(remoteClientService.filterGroup(params, groupField));
@@ -174,6 +181,12 @@ public class GraphController {
     @GetMapping("/export")
     public void export() {
         remoteClientService.exportGraph();
+
+    }
+
+    @GetMapping("/load")
+    public void loadData() {
+        remoteClientService.importData();
 
     }
 

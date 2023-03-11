@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?><graphml xmlns="http://graphml.graphdrawing.org/xmlns">
+    <key attr.name="labelV" attr.type="string" for="node" id="labelV"/>
+    <key attr.name="labelE" attr.type="string" for="edge" id="labelE"/>
+    <key attr.name="weight" attr.type="double" for="edge" id="weight"/>
+    <key attr.name="r" attr.type="int" for="node" id="r"/>
+    <key attr.name="g" attr.type="int" for="node" id="g"/>
+    <key attr.name="b" attr.type="int" for="node" id="b"/>
+    <key attr.name="x" attr.type="float" for="node" id="x"/>
+    <key attr.name="y" attr.type="float" for="node" id="y"/>
+    <key attr.name="size" attr.type="float" for="node" id="size"/>
+    <key attr.name="category" attr.type="string" for="node" id="category"/>
+    <key attr.name="name" attr.type="string" for="node" id="name"/>
+    <key attr.name="type" attr.type="string" for="node" id="type"/>
+    <key attr.name="fw_version" attr.type="string" for="node" id="fw_version"/>
+    <key attr.name="hw_version" attr.type="string" for="node" id="hw_version"/>
+    <key attr.name="ports_numer" attr.type="int" for="node" id="ports_numer"/>
+    <key attr.name="capacity" attr.type="string" for="node" id="capacity"/>
+    <key attr.name="installation_date" attr.type="timestampset" for="node" id="installation_date"/>
+    <graph edgedefault="directed">
+        <node id="1">
+            <data key="labelV">PIR 1</data>
+            <data key="name">PIR 1</data>
+            <data key="category">sensor</data>
+            <data key="type">pir</data>
+            <data key="fw_version">1.0b</data>
+            <data key="hw_version">1.00.00</data>
+            <data key="installation_date">&lt;[1557932400000.0]&gt;</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-79.92108</data>
+            <data key="y">73.42847</data>
+        </node>
+        <node id="2">
+            <data key="labelV">Environmental 1</data>
+            <data key="name">Environmental 1</data>
+            <data key="category">sensor</data>
+            <data key="type">environmental</data>
+            <data key="fw_version">1.0c</data>
+            <data key="hw_version">1.00.00</data>
+            <data key="installation_date">&lt;[1557932400000.0]&gt;</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">116.743256</data>
+            <data key="y">389.17554</data>
+        </node>
+        <node id="3">
+            <data key="labelV">PIR 2</data>
+            <data key="name">PIR 2</data>
+            <data key="category">sensor</data>
+            <data key="type">pir</data>
+            <data key="fw_version">1.0c</data>
+            <data key="hw_version">2.00.00</data>
+            <data key="installation_date">&lt;[1557937800000.0]&gt;</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">148.79697</data>
+            <data key="y">-397.73743</data>
+        </node>
+        <node id="4">
+            <data key="labelV">Access Control</data>
+            <data key="name">Access Control</data>
+            <data key="category">sensor</data>
+            <data key="type">access_control</data>
+            <data key="fw_version">1.0refc</data>
+            <data key="installation_date">&lt;[1557999000000.0]&gt;</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">170.82315</data>
+            <data key="y">289.76868</data>
+        </node>
+        <node id="5">
+            <data key="labelV">LB1</data>
+            <data key="name">LB1</data>
+            <data key="category">space</data>
+            <data key="type">class_room</data>
+            <data key="capacity">30</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">253.22299</data>
+            <data key="y">170.26703</data>
+        </node>
+        <node id="6">
+            <data key="labelV">LB2</data>
+            <data key="name">LB2</data>
+            <data key="category">space</data>
+            <data key="type">class_room</data>
+            <data key="capacity">25</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-412.21844</data>
+            <data key="y">130.547</data>
+        </node>
+        <node id="7">
+            <data key="labelV">Polo B Ludovici</data>
+            <data key="name">Polo B Ludovici</data>
+            <data key="category">space</data>
+            <data key="type">department</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">6.10083</data>
+            <data key="y">-363.51508</data>
+        </node>
+        <node id="8">
+            <data key="labelV">IoT Gateway</data>
+            <data key="name">IoT Gateway</data>
+            <data key="category">actuator</data>
+            <data key="type">gateway</data>
+            <data key="hw_version">3.0</data>
+            <data key="installation_date">&lt;[1557928800000.0]&gt;</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-403.75333</data>
+            <data key="y">-21.58704</data>
+        </node>
+        <node id="9">
+            <data key="labelV">Line Power</data>
+            <data key="name">Line Power</data>
+            <data key="category">equipment</data>
+            <data key="type">energy_cabin</data>
+            <data key="capacity">6Kw</data>
+            <data key="installation_date">&lt;[1550757600000.0]&gt;</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">100.483185</data>
+            <data key="y">-292.44107</data>
+        </node>
+        <node id="10">
+            <data key="labelV">Network line</data>
+            <data key="name">Network line</data>
+            <data key="category">equipment</data>
+            <data key="type">swith</data>
+            <data key="ports_numer">24</data>
+            <data key="capacity">20 Gbps</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-137.94601</data>
+            <data key="y">376.51312</data>
+        </node>
+        <node id="11">
+            <data key="labelV">Network line</data>
+            <data key="name">Network line</data>
+            <data key="category">equipment</data>
+            <data key="type">swith</data>
+            <data key="ports_numer">24</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-153.0303</data>
+            <data key="y">-234.86789</data>
+        </node>
+        <node id="12">
+            <data key="labelV">Wellness Room</data>
+            <data key="name">Wellness Room</data>
+            <data key="category">logic</data>
+            <data key="type">use_case</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-301.3503</data>
+            <data key="y">-243.64432</data>
+        </node>
+        <node id="13">
+            <data key="labelV">Temperature Room</data>
+            <data key="name">Temperature Room</data>
+            <data key="category">logic</data>
+            <data key="type">use_case</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-344.35522</data>
+            <data key="y">-82.74362</data>
+        </node>
+        <node id="14">
+            <data key="labelV">Access Control</data>
+            <data key="name">Access Control</data>
+            <data key="category">logic</data>
+            <data key="type">use_case</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">257.76523</data>
+            <data key="y">273.04822</data>
+        </node>
+        <node id="15">
+            <data key="labelV">PHD room</data>
+            <data key="name">PHD room</data>
+            <data key="category">space</data>
+            <data key="type">study_room</data>
+            <data key="capacity">10</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">131.60263</data>
+            <data key="y">260.16687</data>
+        </node>
+        <node id="16">
+            <data key="labelV">Polo A Ludovici</data>
+            <data key="name">Polo A Ludovici</data>
+            <data key="category">space</data>
+            <data key="type">department</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">346.14584</data>
+            <data key="y">73.93915</data>
+        </node>
+        <node id="17">
+            <data key="labelV">Camerino</data>
+            <data key="name">Camerino</data>
+            <data key="category">place</data>
+            <data key="type">city</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">192.04916</data>
+            <data key="y">-357.55444</data>
+        </node>
+        <node id="18">
+            <data key="labelV">Mario Rossi</data>
+            <data key="name">Mario Rossi</data>
+            <data key="category">person</data>
+            <data key="type">department_director</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">108.84146</data>
+            <data key="y">-42.763126</data>
+        </node>
+        <edge id="dep_lb1" source="7" target="5">
+            <data key="labelE">room</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="dep_lb2" source="7" target="6">
+            <data key="labelE">room</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="dep_pdf" source="7" target="15">
+            <data key="labelE">room</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="sens_location_pir1" source="1" target="5">
+            <data key="labelE">sensor_location</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="sens_location_env1" source="2" target="5">
+            <data key="labelE">sensor_location</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="sens_location_pir2" source="3" target="6">
+            <data key="labelE">sensor_location</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="sens_location_access" source="4" target="15">
+            <data key="labelE">sensor_location</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="sens_location_gateway" source="8" target="5">
+            <data key="labelE">gateway_location</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="powered" source="8" target="9">
+            <data key="labelE">powered</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="network_link" source="8" target="10">
+            <data key="labelE">network-link</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="enabled_uc1" source="12" target="5">
+            <data key="labelE">use_case</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="enabled_uc2" source="13" target="5">
+            <data key="labelE">use_case</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="enabled_uc3" source="14" target="15">
+            <data key="labelE">use_case</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="equipment_net1" source="7" target="10">
+            <data key="labelE">equipment</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="equipment_net2" source="7" target="11">
+            <data key="labelE">equipment</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="equipment_power" source="7" target="9">
+            <data key="labelE">equipment</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="department_location" source="17" target="7">
+            <data key="labelE">location</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="department_location2" source="17" target="16">
+            <data key="labelE">location</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="department_ref" source="7" target="18">
+            <data key="labelE">reference</data>
+            <data key="weight">1.0</data>
+        </edge>
+        <edge id="department_ref2" source="16" target="18">
+            <data key="labelE">reference</data>
+            <data key="weight">1.0</data>
+        </edge>
+    </graph>
+</graphml>

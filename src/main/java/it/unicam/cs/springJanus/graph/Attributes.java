@@ -1,4 +1,4 @@
-package it.unucam.cs.springJanus.graph;
+package it.unicam.cs.springJanus.graph;
 
 public enum Attributes {
     name,
