@@ -78,7 +78,7 @@ This section should list any major frameworks that you built your project using.
    ```
 3. Clone the repo
    ```sh
-   git clone https://github.com/damiano00/ApiAssetJanus.git
+   git clone https://github.com/TBDM-Project/JanusGraph-API-example.git
    ```
 4. Install Maven dependencies
    ```sh
@@ -107,7 +107,7 @@ Luca Mozzoni  - luca.mozzoni@studenti.unicam.it
 
 Damiano Pasquini  - damiano.pasquini@studenti.unicam.it
 
-Project Link: [https://github.com/damiano00/ApiAssetJanus](https://github.com/damiano00/ApiAssetJanus)
+Project Link: [https://github.com/TBDM-Project/JanusGraph-API-example](https://github.com/TBDM-Project/JanusGraph-API-example)
 
 
 
