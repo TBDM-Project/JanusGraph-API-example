@@ -44,6 +44,9 @@ This section should list any major frameworks that you built your project using.
 ## Getting Started
 
 ### Prerequisites
+
+* Linux system or WLS(Windows Subsystem Linux) required
+
 * Docker Installation
   
   See  [Docker get started](https://www.docker.com/get-started/ ).
