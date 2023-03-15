@@ -1,11 +1,4 @@
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-  <h3 align="center">JanusGraph API example</h3>
+<h3 align="center">JanusGraph API example</h3>
 
 
 <!-- TABLE OF CONTENTS -->
@@ -35,7 +28,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-Simple REST API implementation to query an instance of JanusGraph grpah database, using Cassandra as backend storage database. A the result for the project of Technologies for Big Data Mangement exam in the Computer Science degree of University of Camerino.
+Simple REST API implementation to query an instance of JanusGraph grpah database, using Cassandra as backend storage database. A the result for the project of Technologies for Big Data Management exam in the Computer Science degree of University of Camerino.
 
 
 ### Built With
