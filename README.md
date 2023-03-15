@@ -76,7 +76,7 @@ This section should list any major frameworks that you built your project using.
    ```sh
    git clone https://github.com/TBDM-Project/JanusGraph-API-example.git
    ```
-4. Install Maven dependencies
+4. Inside JanusGraph-API-example directory install Maven dependencies
    ```sh
    mvn install
    ```
