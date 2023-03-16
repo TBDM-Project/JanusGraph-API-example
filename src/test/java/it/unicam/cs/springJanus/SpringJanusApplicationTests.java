@@ -1,4 +1,4 @@
-package it.unucam.cs.springJanus;
+package it.unicam.cs.springJanus;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
