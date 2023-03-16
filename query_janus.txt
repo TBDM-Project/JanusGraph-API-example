@@ -1,0 +1,30 @@
+/* Showing */
+g.V().valueMap()
+g.E().valueMap()
+
+/* Counting*/
+g.V().count()
+g.E().count()
+
+/* Filtering */
+g.V().has('type','class_room').valueMap()
+g.V().has('category','space').has('type','department').valueMap()
+g.V().has('category','sensor').valueMap(true,'name')
+
+/* Find all sensor and groups by type */
+g.V().has('category','sensor').group().by('type')
+
+/* Find child of type space starting from node internal id */
+g.V().hasLabel('Polo B Ludovici').out().has('category','space').values('name','category').fold()
+
+/* Find all sensors in lb1 */
+g.V().hasLabel('LB1').in().has('category','sensor').values('name','category').fold()
+
+/* Find all configured use cases */
+g.V().has('category','logic').valueMap()
+
+/* Find the Department director */
+g.V().has('type','city').has('name','Camerino').repeat(out().simplePath()).until(has('type','department_director')).valueMap()
+
+
+
